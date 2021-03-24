@@ -1,7 +1,7 @@
 -- This code is a mess, but it works. I might add better comments down the line.
 -- jbsparrow#5747 Black Hawk Rescue Mission 5 Teleportation GUI Full overhaul.
 -- Fully overhauled the GUI and changed some teleport coordinates.
--- I'll add a translucent GUI later because in BRM5 your cursor gets hidden under the GUI, making it harder to click things accurately.
+-- I'll add a translucent GUI later because in BRM5 your cursor gets hidden under the GUI, making it a pain in the ass to click things.
 
 
 -- Instances:
