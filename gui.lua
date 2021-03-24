@@ -1,211 +1,317 @@
 -- This code is a mess, but it works. I might add better comments down the line.
--- jbsparrow#5747 Black Hawk Rescue Mission 5 Teleportation GUI
--- Cards#8591 Originally made this GUI with less teleports, I have added more teleports to the original.
+-- jbsparrow#5747 Black Hawk Rescue Mission 5 Teleportation GUI Full overhaul.
+-- Fully overhauled the GUI and changed some teleport coordinates.
+-- I'll add a translucent GUI later because in BRM5 your cursor gets hidden under the GUI, making it harder to click things accurately.
 
-local ScreenGui = Instance.new("ScreenGui")
-local Frame = Instance.new("Frame")
-local TextLabel = Instance.new("TextLabel")
-local Ronograd = Instance.new("TextButton")
-local Desert = Instance.new("TextButton")
-local Mountain = Instance.new("TextButton")
-local Base = Instance.new("TextButton")
+
+-- Instances:
+
+local BlackHawkTeleportGUI = Instance.new("ScreenGui")
+local TopFrame = Instance.new("Frame")
+local BaseFrame = Instance.new("Frame")
+local ToggleHelp = Instance.new("TextLabel")
+local FeatureRequests = Instance.new("TextLabel")
+local ImageLabel = Instance.new("ImageLabel")
+local CargoWarpsButton = Instance.new("TextButton")
+local MiscWarpsButton = Instance.new("TextButton")
+local CargoWarpsFrame = Instance.new("Frame")
 local DesertCargo = Instance.new("TextButton")
-local NavalBase = Instance.new("TextButton")
-local ArcticBase = Instance.new("TextButton")
-local QuarryCrane = Instance.new("TextButton")
 local ForestCargo = Instance.new("TextButton")
 local OutskirtsCargo = Instance.new("TextButton")
+local BaseWarp = Instance.new("TextButton")
+local MiscWarpsFrame = Instance.new("Frame")
+local Mountain = Instance.new("TextButton")
+local Ronograd = Instance.new("TextButton")
+local Arctic = Instance.new("TextButton")
+local Desert = Instance.new("TextButton")
+local Naval = Instance.new("TextButton")
+local Quarry = Instance.new("TextButton")
+local ExploitName = Instance.new("TextLabel")
+local DiscordUsername = Instance.new("TextLabel")
 
-ScreenGui.Parent = game.CoreGui
+-- Other Stuff:
 
-Frame.Parent = ScreenGui
-Frame.Active = true
-Frame.BackgroundColor3 = Color3.fromRGB(152, 217, 124)
-Frame.BackgroundTransparency = 0.500
-Frame.BorderSizePixel = 5
-Frame.Position = UDim2.new(0.0852589384, 0, 0.143673033, 0)
-Frame.Size = UDim2.new(0, 223, 0, 505)
-Frame.Draggable = true
+function onKeyPress(inputObject, gameProcessedEvent)
+	if inputObject.KeyCode == Enum.KeyCode.M then
+		if TopFrame.Visible == false then
+			TopFrame.Visible = true
+		else
+			TopFrame.Visible = false
+		end
+	end
+end
 
-TextLabel.Parent = Frame
-TextLabel.BackgroundColor3 = Color3.fromRGB(152, 217, 124)
-TextLabel.BackgroundTransparency = 1.000
-TextLabel.Position = UDim2.new(0.22869955, 0, 0, 0)
-TextLabel.Size = UDim2.new(0, 125, 0, 35)
-TextLabel.Font = Enum.Font.SourceSans
-TextLabel.Text = "FemboiPoundMeOwO BRM5 TP\nDiscord: jbsparrow#5747"
-TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel.TextScaled = true
-TextLabel.TextSize = 14.000
-TextLabel.TextStrokeTransparency = 1.000
-TextLabel.TextWrapped = true
+game:GetService("UserInputService").InputBegan:connect(onKeyPress)
+
+-- Properties:
+
+BlackHawkTeleportGUI.Name = "BlackHawkTeleportGUI"
+BlackHawkTeleportGUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+BlackHawkTeleportGUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+BlackHawkTeleportGUI.ResetOnSpawn = false
+
+TopFrame.Name = "TopFrame"
+TopFrame.Parent = BlackHawkTeleportGUI
+TopFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+TopFrame.BorderSizePixel = 2
+TopFrame.Position = UDim2.new(0.296495378, 0, 0.40669015, 0)
+TopFrame.Size = UDim2.new(0, 302, 0, 206)
+TopFrame.Active = true
+TopFrame.Draggable = true
+
+BaseFrame.Name = "BaseFrame"
+BaseFrame.Parent = TopFrame
+BaseFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+BaseFrame.BorderColor3 = Color3.fromRGB(50, 50, 50)
+BaseFrame.BorderSizePixel = 3
+BaseFrame.Position = UDim2.new(0.0198675506, 0, 0.281553388, 0)
+BaseFrame.Size = UDim2.new(0, 289, 0, 142)
+
+ToggleHelp.Name = "ToggleHelp"
+ToggleHelp.Parent = BaseFrame
+ToggleHelp.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+ToggleHelp.BackgroundTransparency = 1.000
+ToggleHelp.BorderSizePixel = 0
+ToggleHelp.Position = UDim2.new(0.0276816618, 0, 0.830985904, 0)
+ToggleHelp.Size = UDim2.new(0, 149, 0, 24)
+ToggleHelp.Font = Enum.Font.SourceSans
+ToggleHelp.Text = "Press M to toggle the GUI"
+ToggleHelp.TextColor3 = Color3.fromRGB(255, 255, 255)
+ToggleHelp.TextSize = 17.000
+ToggleHelp.TextXAlignment = Enum.TextXAlignment.Left
+
+FeatureRequests.Name = "FeatureRequests"
+FeatureRequests.Parent = BaseFrame
+FeatureRequests.BackgroundColor3 = Color3.fromRGB(74, 74, 74)
+FeatureRequests.BorderSizePixel = 2
+FeatureRequests.Position = UDim2.new(0.0276816618, 0, 0.0563380271, 0)
+FeatureRequests.Size = UDim2.new(0, 94, 0, 110)
+FeatureRequests.Font = Enum.Font.SourceSans
+FeatureRequests.Text = "For Feature  Requests please   contact me on  Discord."
+FeatureRequests.TextColor3 = Color3.fromRGB(0, 0, 0)
+FeatureRequests.TextSize = 22.000
+FeatureRequests.TextWrapped = true
+
+ImageLabel.Parent = BaseFrame
+ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel.BorderSizePixel = 2
+ImageLabel.Position = UDim2.new(0.591695487, 0, 0.0563380271, 0)
+ImageLabel.Size = UDim2.new(0, 110, 0, 110)
+ImageLabel.Image = "rbxassetid://6562791820"
+
+CargoWarpsButton.Name = "CargoWarpsButton"
+CargoWarpsButton.Parent = BaseFrame
+CargoWarpsButton.BackgroundColor3 = Color3.fromRGB(108, 108, 108)
+CargoWarpsButton.BorderSizePixel = 2
+CargoWarpsButton.Position = UDim2.new(0.0276816618, 0, -0.239436626, 0)
+CargoWarpsButton.Size = UDim2.new(0, 82, 0, 26)
+CargoWarpsButton.Font = Enum.Font.SourceSans
+CargoWarpsButton.Text = "Cargo Warps"
+CargoWarpsButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+CargoWarpsButton.TextSize = 15.000
+CargoWarpsButton.MouseButton1Click:Connect(function()
+	MiscWarpsFrame.Visible = false
+	if CargoWarpsFrame.Visible == true then
+		CargoWarpsFrame.Visible = false
+	else
+		CargoWarpsFrame.Visible = true
+	end
+end)
+
+MiscWarpsButton.Name = "MiscWarpsButton"
+MiscWarpsButton.Parent = BaseFrame
+MiscWarpsButton.BackgroundColor3 = Color3.fromRGB(108, 108, 108)
+MiscWarpsButton.BorderSizePixel = 2
+MiscWarpsButton.Position = UDim2.new(0.688581288, 0, -0.239436626, 0)
+MiscWarpsButton.Size = UDim2.new(0, 82, 0, 26)
+MiscWarpsButton.Font = Enum.Font.SourceSans
+MiscWarpsButton.Text = "Misc Warps"
+MiscWarpsButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+MiscWarpsButton.TextSize = 15.000
+MiscWarpsButton.MouseButton1Click:Connect(function()
+	CargoWarpsFrame.Visible = false
+	if MiscWarpsFrame.Visible == true then
+		MiscWarpsFrame.Visible = false
+	else
+		MiscWarpsFrame.Visible = true
+	end
+end)
+
+CargoWarpsFrame.Name = "CargoWarpsFrame"
+CargoWarpsFrame.Parent = BaseFrame
+CargoWarpsFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+CargoWarpsFrame.BorderColor3 = Color3.fromRGB(50, 50, 50)
+CargoWarpsFrame.BorderSizePixel = 3
+CargoWarpsFrame.Size = UDim2.new(0, 289, 0, 142)
+CargoWarpsFrame.Visible = false
+
+DesertCargo.Name = "DesertCargo"
+DesertCargo.Parent = CargoWarpsFrame
+DesertCargo.BackgroundColor3 = Color3.fromRGB(74, 74, 74)
+DesertCargo.BorderSizePixel = 2
+DesertCargo.Position = UDim2.new(0.0276816618, 0, 0.0563380271, 0)
+DesertCargo.Size = UDim2.new(0, 82, 0, 36)
+DesertCargo.Font = Enum.Font.SourceSans
+DesertCargo.Text = "Desert Cargo"
+DesertCargo.TextColor3 = Color3.fromRGB(255, 255, 255)
+DesertCargo.TextSize = 17.000
+DesertCargo.MouseButton1Click:connect(function()
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-4526.27, 101, 4175.46))
+end)
+
+ForestCargo.Name = "ForestCargo"
+ForestCargo.Parent = CargoWarpsFrame
+ForestCargo.BackgroundColor3 = Color3.fromRGB(74, 74, 74)
+ForestCargo.BorderSizePixel = 2
+ForestCargo.Position = UDim2.new(0.359861583, 0, 0.0563380271, 0)
+ForestCargo.Size = UDim2.new(0, 82, 0, 36)
+ForestCargo.Font = Enum.Font.SourceSans
+ForestCargo.Text = "Forest Cargo"
+ForestCargo.TextColor3 = Color3.fromRGB(255, 255, 255)
+ForestCargo.TextSize = 17.000
+ForestCargo.MouseButton1Click:connect(function()
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(222.4, 95, 3157.22))
+end)
+
+OutskirtsCargo.Name = "OutskirtsCargo"
+OutskirtsCargo.Parent = CargoWarpsFrame
+OutskirtsCargo.BackgroundColor3 = Color3.fromRGB(74, 74, 74)
+OutskirtsCargo.BorderSizePixel = 2
+OutskirtsCargo.Position = UDim2.new(0.688581347, 0, 0.0563380271, 0)
+OutskirtsCargo.Size = UDim2.new(0, 82, 0, 36)
+OutskirtsCargo.Font = Enum.Font.SourceSans
+OutskirtsCargo.Text = "OS Cargo"
+OutskirtsCargo.TextColor3 = Color3.fromRGB(255, 255, 255)
+OutskirtsCargo.TextSize = 17.000
+OutskirtsCargo.MouseButton1Click:connect(function()
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(1803.77, 232, 3101.72))
+end)
+
+BaseWarp.Name = "BaseWarp"
+BaseWarp.Parent = BaseFrame
+BaseWarp.BackgroundColor3 = Color3.fromRGB(108, 108, 108)
+BaseWarp.BorderSizePixel = 2
+BaseWarp.Position = UDim2.new(0.359861583, 0, -0.239436626, 0)
+BaseWarp.Size = UDim2.new(0, 82, 0, 26)
+BaseWarp.Font = Enum.Font.SourceSans
+BaseWarp.Text = "Base Warp"
+BaseWarp.TextColor3 = Color3.fromRGB(0, 0, 0)
+BaseWarp.TextSize = 15.000
+BaseWarp.MouseButton1Click:connect(function()
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-3467.55, 61.5745, 1147.81))
+end)
+
+MiscWarpsFrame.Name = "MiscWarpsFrame"
+MiscWarpsFrame.Parent = BaseFrame
+MiscWarpsFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+MiscWarpsFrame.BorderColor3 = Color3.fromRGB(50, 50, 50)
+MiscWarpsFrame.BorderSizePixel = 3
+MiscWarpsFrame.Size = UDim2.new(0, 289, 0, 142)
+MiscWarpsFrame.Visible = false
+
+Mountain.Name = "Mountain"
+Mountain.Parent = MiscWarpsFrame
+Mountain.BackgroundColor3 = Color3.fromRGB(74, 74, 74)
+Mountain.BorderSizePixel = 2
+Mountain.Position = UDim2.new(0.359861583, 0, 0.0563380718, 0)
+Mountain.Size = UDim2.new(0, 82, 0, 36)
+Mountain.Font = Enum.Font.SourceSans
+Mountain.Text = "Mountain"
+Mountain.TextColor3 = Color3.fromRGB(255, 255, 255)
+Mountain.TextSize = 17.000
+Mountain.MouseButton1Click:connect(function()
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-1799.10657, 823.465637, -4301.93408))
+end)
 
 Ronograd.Name = "Ronograd"
-Ronograd.Parent = Frame
-Ronograd.BackgroundColor3 = Color3.fromRGB(152, 217, 124)
-Ronograd.BackgroundTransparency = 0.500
-Ronograd.BorderSizePixel = 5
-Ronograd.Position = UDim2.new(0.260089695, 0, 0.09, 0)
-Ronograd.Size = UDim2.new(0, 106, 0, 26)
+Ronograd.Parent = MiscWarpsFrame
+Ronograd.BackgroundColor3 = Color3.fromRGB(74, 74, 74)
+Ronograd.BorderSizePixel = 2
+Ronograd.Position = UDim2.new(0.688581288, 0, 0.0563380718, 0)
+Ronograd.Size = UDim2.new(0, 82, 0, 36)
 Ronograd.Font = Enum.Font.SourceSans
 Ronograd.Text = "Ronograd"
-Ronograd.TextColor3 = Color3.fromRGB(0, 0, 0)
-Ronograd.TextScaled = true
-Ronograd.TextSize = 14.000
-Ronograd.TextWrapped = true
+Ronograd.TextColor3 = Color3.fromRGB(255, 255, 255)
+Ronograd.TextSize = 17.000
 Ronograd.MouseButton1Click:connect(function()
-game.Players.LocalPlayer.Character:MoveTo(Vector3.new(3356.396, 176.642868, 479.418335))
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(3356.396, 176.642868, 479.418335))
+end)
+
+Arctic.Name = "Arctic"
+Arctic.Parent = MiscWarpsFrame
+Arctic.BackgroundColor3 = Color3.fromRGB(74, 74, 74)
+Arctic.BorderSizePixel = 2
+Arctic.Position = UDim2.new(0.359861612, 0, 0.577464759, 0)
+Arctic.Size = UDim2.new(0, 82, 0, 36)
+Arctic.Font = Enum.Font.SourceSans
+Arctic.Text = "Arctic Base"
+Arctic.TextColor3 = Color3.fromRGB(255, 255, 255)
+Arctic.TextSize = 17.000
+Arctic.MouseButton1Click:connect(function()
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(6839.26, 290, -1994.75))
 end)
 
 Desert.Name = "Desert"
-Desert.Parent = Frame
-Desert.BackgroundColor3 = Color3.fromRGB(152, 217, 124)
-Desert.BackgroundTransparency = 0.500
-Desert.BorderSizePixel = 5
-Desert.Position = UDim2.new(0.260089695, 0, 0.18, 0)
-Desert.Size = UDim2.new(0, 106, 0, 26)
+Desert.Parent = MiscWarpsFrame
+Desert.BackgroundColor3 = Color3.fromRGB(74, 74, 74)
+Desert.BorderSizePixel = 2
+Desert.Position = UDim2.new(0.0276816618, 0, 0.0563380122, 0)
+Desert.Size = UDim2.new(0, 82, 0, 36)
 Desert.Font = Enum.Font.SourceSans
 Desert.Text = "Desert Town"
-Desert.TextColor3 = Color3.fromRGB(0, 0, 0)
-Desert.TextScaled = true
-Desert.TextSize = 14.000
-Desert.TextWrapped = true
+Desert.TextColor3 = Color3.fromRGB(255, 255, 255)
+Desert.TextSize = 17.000
 Desert.MouseButton1Click:connect(function()
-game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-4972.27979, 107.465622, 5641.16016))
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-4972.27979, 107.465622, 5641.16016))
 end)
 
-Mountain.Name = "Mountain"
-Mountain.Parent = Frame
-Mountain.BackgroundColor3 = Color3.fromRGB(152, 217, 124)
-Mountain.BackgroundTransparency = 0.500
-Mountain.BorderSizePixel = 5
-Mountain.Position = UDim2.new(0.260089695, 0, 0.27, 0)
-Mountain.Size = UDim2.new(0, 106, 0, 26)
-Mountain.Font = Enum.Font.SourceSans
-Mountain.Text = "Mountain"
-Mountain.TextColor3 = Color3.fromRGB(0, 0, 0)
-Mountain.TextScaled = true
-Mountain.TextSize = 14.000
-Mountain.TextWrapped = true
-Mountain.MouseButton1Click:connect(function()
-game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-2021.58862, 747.161438, -4489.54639))
+Naval.Name = "Naval"
+Naval.Parent = MiscWarpsFrame
+Naval.BackgroundColor3 = Color3.fromRGB(74, 74, 74)
+Naval.BorderSizePixel = 2
+Naval.Position = UDim2.new(0.0276816599, 0, 0.577464759, 0)
+Naval.Size = UDim2.new(0, 82, 0, 36)
+Naval.Font = Enum.Font.SourceSans
+Naval.Text = "Naval Base"
+Naval.TextColor3 = Color3.fromRGB(255, 255, 255)
+Naval.TextSize = 17.000
+Naval.MouseButton1Click:connect(function()
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(6408.08, 195, 2156.84))
 end)
 
-Base.Name = "Base"
-Base.Parent = Frame
-Base.BackgroundColor3 = Color3.fromRGB(152, 217, 124)
-Base.BackgroundTransparency = 0.500
-Base.BorderSizePixel = 5
-Base.Position = UDim2.new(0.260089695, 0, 0.36, 0)
-Base.Size = UDim2.new(0, 106, 0, 26)
-Base.Font = Enum.Font.SourceSans
-Base.Text = "Base"
-Base.TextColor3 = Color3.fromRGB(0, 0, 0)
-Base.TextScaled = true
-Base.TextSize = 14.000
-Base.TextWrapped = true
-Base.MouseButton1Click:connect(function()
-game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-3467.55, 61.5745, 1147.81))
+Quarry.Name = "Quarry"
+Quarry.Parent = MiscWarpsFrame
+Quarry.BackgroundColor3 = Color3.fromRGB(74, 74, 74)
+Quarry.BorderSizePixel = 2
+Quarry.Position = UDim2.new(0.688581347, 0, 0.577464759, 0)
+Quarry.Size = UDim2.new(0, 82, 0, 36)
+Quarry.Font = Enum.Font.SourceSans
+Quarry.Text = "Quarry"
+Quarry.TextColor3 = Color3.fromRGB(255, 255, 255)
+Quarry.TextSize = 17.000
+Quarry.MouseButton1Click:Connect(function()
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(167.03, 284, 2097.12))
 end)
 
-DesertCargo.Name = "Desert Cargo"
-DesertCargo.Parent = Frame
-DesertCargo.BackgroundColor3 = Color3.fromRGB(152, 217, 124)
-DesertCargo.BackgroundTransparency = 0.500
-DesertCargo.BorderSizePixel = 5
-DesertCargo.Position = UDim2.new(0.260089695, 0, 0.45, 0)
-DesertCargo.Size = UDim2.new(0, 106, 0, 26)
-DesertCargo.Font = Enum.Font.SourceSans
-DesertCargo.Text = "Desert Cargo"
-DesertCargo.TextColor3 = Color3.fromRGB(0, 0, 0)
-DesertCargo.TextScaled = true
-DesertCargo.TextSize = 14.000
-DesertCargo.TextWrapped = true
-DesertCargo.MouseButton1Click:connect(function()
-game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-4526.27, 101, 4175.46))
-end)
+ExploitName.Name = "ExploitName"
+ExploitName.Parent = TopFrame
+ExploitName.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+ExploitName.BorderSizePixel = 0
+ExploitName.Size = UDim2.new(0, 88, 0, 24)
+ExploitName.Font = Enum.Font.SourceSans
+ExploitName.Text = "  BRM5 TP GUI"
+ExploitName.TextColor3 = Color3.fromRGB(255, 255, 255)
+ExploitName.TextSize = 18.000
+ExploitName.TextXAlignment = Enum.TextXAlignment.Left
 
-NavalBase.Name = "Naval Base"
-NavalBase.Parent = Frame
-NavalBase.BackgroundColor3 = Color3.fromRGB(152, 217, 124)
-NavalBase.BackgroundTransparency = 0.500
-NavalBase.BorderSizePixel = 5
-NavalBase.Position = UDim2.new(0.260089695, 0, 0.54, 0)
-NavalBase.Size = UDim2.new(0, 106, 0, 26)
-NavalBase.Font = Enum.Font.SourceSans
-NavalBase.Text = "Naval Base"
-NavalBase.TextColor3 = Color3.fromRGB(0, 0, 0)
-NavalBase.TextScaled = true
-NavalBase.TextSize = 14.000
-NavalBase.TextWrapped = true
-NavalBase.MouseButton1Click:connect(function()
-game.Players.LocalPlayer.Character:MoveTo(Vector3.new(6408.08, 195, 2156.84))
-end)
-
-ArcticBase.Name = "Arctic Base"
-ArcticBase.Parent = Frame
-ArcticBase.BackgroundColor3 = Color3.fromRGB(152, 217, 124)
-ArcticBase.BackgroundTransparency = 0.500
-ArcticBase.BorderSizePixel = 5
-ArcticBase.Position = UDim2.new(0.260089695, 0, 0.63, 0)
-ArcticBase.Size = UDim2.new(0, 106, 0, 26)
-ArcticBase.Font = Enum.Font.SourceSans
-ArcticBase.Text = "Arctic Base"
-ArcticBase.TextColor3 = Color3.fromRGB(0, 0, 0)
-ArcticBase.TextScaled = true
-ArcticBase.TextSize = 14.000
-ArcticBase.TextWrapped = true
-ArcticBase.MouseButton1Click:connect(function()
-game.Players.LocalPlayer.Character:MoveTo(Vector3.new(6839.26, 290, -1994.75))
-end)
-
-QuarryCrane.Name = "Quarry Crane"
-QuarryCrane.Parent = Frame
-QuarryCrane.BackgroundColor3 = Color3.fromRGB(152, 217, 124)
-QuarryCrane.BackgroundTransparency = 0.500
-QuarryCrane.BorderSizePixel = 5
-QuarryCrane.Position = UDim2.new(0.260089695, 0, 0.72, 0)
-QuarryCrane.Size = UDim2.new(0, 106, 0, 26)
-QuarryCrane.Font = Enum.Font.SourceSans
-QuarryCrane.Text = "Quarry"
-QuarryCrane.TextColor3 = Color3.fromRGB(0, 0, 0)
-QuarryCrane.TextScaled = true
-QuarryCrane.TextSize = 14.000
-QuarryCrane.TextWrapped = true
-QuarryCrane.MouseButton1Click:connect(function()
-game.Players.LocalPlayer.Character:MoveTo(Vector3.new(167.03, 284, 2097.12))
-end)
-
-ForestCargo.Name = "Forest Cargo"
-ForestCargo.Parent = Frame
-ForestCargo.BackgroundColor3 = Color3.fromRGB(152, 217, 124)
-ForestCargo.BackgroundTransparency = 0.500
-ForestCargo.BorderSizePixel = 5
-ForestCargo.Position = UDim2.new(0.260089695, 0, 0.81, 0)
-ForestCargo.Size = UDim2.new(0, 106, 0, 26)
-ForestCargo.Font = Enum.Font.SourceSans
-ForestCargo.Text = "Forest Cargo"
-ForestCargo.TextColor3 = Color3.fromRGB(0, 0, 0)
-ForestCargo.TextScaled = true
-ForestCargo.TextSize = 14.000
-ForestCargo.TextWrapped = true
-ForestCargo.MouseButton1Click:connect(function()
-game.Players.LocalPlayer.Character:MoveTo(Vector3.new(222.4, 95, 3157.22))
-end)
-
-OutskirtsCargo.Name = "Outskirts Cargo"
-OutskirtsCargo.Parent = Frame
-OutskirtsCargo.BackgroundColor3 = Color3.fromRGB(152, 217, 124)
-OutskirtsCargo.BackgroundTransparency = 0.500
-OutskirtsCargo.BorderSizePixel = 5
-OutskirtsCargo.Position = UDim2.new(0.260089695, 0, 0.9, 0)
-OutskirtsCargo.Size = UDim2.new(0, 106, 0, 26)
-OutskirtsCargo.Font = Enum.Font.SourceSans
-OutskirtsCargo.Text = "OS Cargo"
-OutskirtsCargo.TextColor3 = Color3.fromRGB(0, 0, 0)
-OutskirtsCargo.TextScaled = true
-OutskirtsCargo.TextSize = 14.000
-OutskirtsCargo.TextWrapped = true
-OutskirtsCargo.MouseButton1Click:connect(function()
-game.Players.LocalPlayer.Character:MoveTo(Vector3.new(1803.77, 232, 3101.72))
-end)
+DiscordUsername.Name = "DiscordUsername"
+DiscordUsername.Parent = TopFrame
+DiscordUsername.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+DiscordUsername.BorderSizePixel = 0
+DiscordUsername.Position = UDim2.new(0.655629158, 0, 0, 0)
+DiscordUsername.Size = UDim2.new(0, 104, 0, 24)
+DiscordUsername.Font = Enum.Font.SourceSans
+DiscordUsername.Text = " jbsparrow#5747  "
+DiscordUsername.TextColor3 = Color3.fromRGB(255, 255, 255)
+DiscordUsername.TextSize = 18.000
+DiscordUsername.TextXAlignment = Enum.TextXAlignment.Right
