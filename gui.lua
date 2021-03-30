@@ -170,7 +170,7 @@ ForestCargo.Text = "Forest Cargo"
 ForestCargo.TextColor3 = Color3.fromRGB(255, 255, 255)
 ForestCargo.TextSize = 17.000
 ForestCargo.MouseButton1Click:connect(function()
-	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(222.4, 95, 3157.22))
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(166.59, 64, 3064.55))
 end)
 
 OutskirtsCargo.Name = "OutskirtsCargo"
