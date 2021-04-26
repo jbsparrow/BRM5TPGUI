@@ -26,6 +26,7 @@ local Arctic = Instance.new("TextButton")
 local Desert = Instance.new("TextButton")
 local Naval = Instance.new("TextButton")
 local Quarry = Instance.new("TextButton")
+local Skydive = Instance.new("TextButton")
 local ExploitName = Instance.new("TextLabel")
 local DiscordUsername = Instance.new("TextLabel")
 
@@ -54,7 +55,7 @@ TopFrame.Name = "TopFrame"
 TopFrame.Parent = BlackHawkTeleportGUI
 TopFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
 TopFrame.BorderSizePixel = 2
-TopFrame.Position = UDim2.new(0.296495378, 0, 0.40669015, 0)
+TopFrame.Position = UDim2.new(0.0634372011, 0, 0.514084518, 0)
 TopFrame.Size = UDim2.new(0, 302, 0, 206)
 TopFrame.Active = true
 TopFrame.Draggable = true
@@ -241,7 +242,7 @@ Arctic.Name = "Arctic"
 Arctic.Parent = MiscWarpsFrame
 Arctic.BackgroundColor3 = Color3.fromRGB(74, 74, 74)
 Arctic.BorderSizePixel = 2
-Arctic.Position = UDim2.new(0.359861612, 0, 0.577464759, 0)
+Arctic.Position = UDim2.new(0.359861612, 0, 0.690140784, 0)
 Arctic.Size = UDim2.new(0, 82, 0, 36)
 Arctic.Font = Enum.Font.SourceSans
 Arctic.Text = "Arctic Base"
@@ -269,7 +270,7 @@ Naval.Name = "Naval"
 Naval.Parent = MiscWarpsFrame
 Naval.BackgroundColor3 = Color3.fromRGB(74, 74, 74)
 Naval.BorderSizePixel = 2
-Naval.Position = UDim2.new(0.0276816599, 0, 0.577464759, 0)
+Naval.Position = UDim2.new(0.0276816599, 0, 0.690140784, 0)
 Naval.Size = UDim2.new(0, 82, 0, 36)
 Naval.Font = Enum.Font.SourceSans
 Naval.Text = "Naval Base"
@@ -283,7 +284,7 @@ Quarry.Name = "Quarry"
 Quarry.Parent = MiscWarpsFrame
 Quarry.BackgroundColor3 = Color3.fromRGB(74, 74, 74)
 Quarry.BorderSizePixel = 2
-Quarry.Position = UDim2.new(0.688581347, 0, 0.577464759, 0)
+Quarry.Position = UDim2.new(0.685121119, 0, 0.690140784, 0)
 Quarry.Size = UDim2.new(0, 82, 0, 36)
 Quarry.Font = Enum.Font.SourceSans
 Quarry.Text = "Quarry"
@@ -291,6 +292,20 @@ Quarry.TextColor3 = Color3.fromRGB(255, 255, 255)
 Quarry.TextSize = 17.000
 Quarry.MouseButton1Click:Connect(function()
 	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(167.03, 284, 2097.12))
+end)
+
+Skydive.Name = "Skydive"
+Skydive.Parent = MiscWarpsFrame
+Skydive.BackgroundColor3 = Color3.fromRGB(74, 74, 74)
+Skydive.BorderSizePixel = 2
+Skydive.Position = UDim2.new(0.360000014, 0, 0.372999996, 0)
+Skydive.Size = UDim2.new(0, 82, 0, 36)
+Skydive.Font = Enum.Font.SourceSans
+Skydive.Text = "Skydive"
+Skydive.TextColor3 = Color3.fromRGB(255, 255, 255)
+Skydive.TextSize = 17.000
+Skydive.MouseButton1Click:Connect(function()
+	game.Players.LocalPlayer.Character:MoveTo(Vector3.new(167.03, 35000, 2097.12))
 end)
 
 ExploitName.Name = "ExploitName"
